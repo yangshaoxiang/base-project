@@ -1,0 +1,82 @@
+server:
+  port: 8093
+spring:
+  application:
+    name: base-peoject
+  # 数据源配置
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #RDS主实例外网地址
+    url: jdbc:mysql://127.0.0.1:3306/base_dev?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+
+  #Redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    #password: sahsaTytr*asl12
+    database: 1
+  #连接超时时间（毫秒）
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
+  # spring cache
+  cache:
+    type: redis
+
+#配置mybatis   因为使用了 mybatisplus 无需在配置  mybatis
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+
+# mybatis-plus 配置
+mybatis-plus:
+  global-config:
+    db-config:
+      # 配置逻辑删除字段 is_deleted
+      logic-delete-field: is_deleted
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
+ # 默认扫描 classpath*:/mapper/**/*.xml
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+# 分页配置 - 注意这个和 mybatis-plus 的分页是 2 套逻辑
+pagehelper:
+  # 指定使用的数据库数据库
+  helperDialect: mysql
+  # reasonable：分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页， 		pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
+  reasonable: true
+  # 自动分页 当查询条件有 pageNum，pageSize 参数时，自动执行分页
+  support-methods-arguments: false
+
+#sql控制台输出
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    # 只有 DEBUG 级别才输出 sql 日志
+    com.ysx.mapper: DEBUG
+
+
+# 项目 自定义属性
+ysx:
+  # 认证模块
+  auth:
+    # jwt 加密秘钥
+    secretKey: dsdkljisisbggbfdsaea
+    # jwt token 过期时间 30 天 单位 毫秒
+    ttlMillis: 2592000000
+    # 客户端发送请求 token 所放的请求头名称(注意该配置在 Knife4jConfig 中也有使用)
+    tokenHeader: token
+
+# 开启 knife4j 文档 自定义文档配置 具体请阅读  knife4j 文档使用
+knife4j:
+  markdowns: classpath:doc/*
+
+

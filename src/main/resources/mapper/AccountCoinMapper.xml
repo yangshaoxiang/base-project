@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysx.mapper.AccountCoinMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ysx.entity.AccountCoin">
+        <id column="account_id" property="accountId" />
+        <result column="user_id" property="userId" />
+        <result column="coin_usable" property="coinUsable" />
+        <result column="coin_freeze" property="coinFreeze" />
+        <result column="state" property="state" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        account_id, user_id, coin_usable, coin_freeze, state, is_deleted, create_time, update_time
+    </sql>
+
+
+</mapper>
