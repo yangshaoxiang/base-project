@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 /**
  * 基础代码自动生成器 一般只需要修改下面静态成员变量即可，如果包路径发生变化，main 方法中包路径注意修改
+ *  注意: 这个生成器生成的代码 在实体类上会加 @ApiModel 注解，如果有 vo 类需要继承 实体类，在vo类上也要加上新的 @ApiModel，否则 knife4j 文档上会有这个问题
+ *  https://gitee.com/xiaoym/knife4j/issues/I1H2F0
+ *  这个是我提的，目前好像还未修复该问题
  */
 public class MybatisPlusGeneratorCode {
 
